@@ -20,12 +20,16 @@ pub fn establish_connection() -> PgConnection {
         .expect(&format!("Error connecting to {}", database_url))
 }
 
+// A serializable response containing zero or more gardens
 #[derive(RustcDecodable, RustcEncodable)]
 struct GardensResponse {
     gardens: Vec<Garden>,
 }
 
 pub fn garden_handler(req: &mut Request) -> IronResult<Response> {
+
+    // Check if a garden_name is present in the query and store this
+    // in optional variable garden_name_opt
     let ref garden_name_opt = req.extensions.get::<Router>()
         .unwrap().find("query");
 
@@ -33,6 +37,8 @@ pub fn garden_handler(req: &mut Request) -> IronResult<Response> {
 
     let connection = establish_connection();
 
+    // If a garden_name was supplied, look for this in the database,
+    // else return all gardens
     match *garden_name_opt {
         Some(garden_name) => {
             let result = garden.filter(name.eq(garden_name))
@@ -50,4 +56,3 @@ pub fn garden_handler(req: &mut Request) -> IronResult<Response> {
         }
     }
 }
-
