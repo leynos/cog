@@ -13,7 +13,7 @@ Usage
 Pre-requisites:
 
 * It is probably best to run this on a reasonably modern Linux distro
-* Rust Nightly and Cargo must be installed on your system (see: https://doc.rust-lang.org/book/nightly-rust.html)
+* Rust and Cargo must be installed on your system (see: https://doc.rust-lang.org/book/nightly-rust.html)
 
 Install Diesel CLI:
 
