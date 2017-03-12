@@ -9,16 +9,9 @@ syntex = { version = "0.44.0", optional = true }
 diesel_codegen_syntex = { version = "0.8.0", features = ["postgres"], optional = true }
 
 [dependencies]
-#log = { version = "0.2.*" }
-#fern = { version = "0.2.*" }
 rustc-serialize = "^0.3"
-diesel = { version = "0.8.0" }
-diesel_codegen = { version = "0.8.0", features = ["postgres"], optional = true }
-dotenv = { version = "0.8.0" }
+diesel = { version = "0.11.0", features = ["postgres"] }
+diesel_codegen = { version = "0.11.0", features = ["postgres"] }
+dotenv = "0.8.0"
 iron = { version = "*" }
 router = { version = "*" }
-
-[features]
-default = ["nightly"]
-with-syntex = ["syntex", "diesel_codegen_syntex"]
-nightly = ["diesel/unstable", "diesel_codegen"]
